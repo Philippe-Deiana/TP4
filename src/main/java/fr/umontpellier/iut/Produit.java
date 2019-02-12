@@ -10,7 +10,7 @@ public class Produit {
     private double prixCourant;
     private LocalDate dateEnchere;
     private LocalTime heureDebut;
-    private int lePasMini;
+    private static int lePasMini;
     private int coutParticipation;
     private boolean ouverture;
 
@@ -30,14 +30,28 @@ public class Produit {
         this.heureDebut=LocalTime.now();
         this.dateEnchere=LocalDate.now();
         this.ouverture= true;
-
-
     }
 
     public void arreterEnchere(){
         this.ouverture= false;
-
     }
 
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "numero=" + numero +
+                ", description='" + description + '\'' +
+                ", prixCourant=" + prixCourant +
+                ", lePasMini=" + lePasMini +
+                ", coutParticipation=" + coutParticipation +
+                ", ouverture=" + ouverture +
+                '}';
+    }
 
+    public void ajouterOffre(OffreEnchere offre){
+
+        if(offre.getPrix() >= prixCourant ){
+
+        }
+    }
 }
