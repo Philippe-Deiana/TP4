@@ -8,13 +8,14 @@ public class Compte {
     private String email;
     private String adresse;
     private double soldeDuCompte;
-    private ArrayList<OffreEnchere> listOffre ;
+    private ArrayList<OffreEnchere> listOffresDeposesSurLEnsembleDesProduits;
 
     public Compte(String pseudo, String email, String adresse) {
         this.pseudo = pseudo;
         this.email = email;
         this.adresse = adresse;
         this.soldeDuCompte=0;
+        listOffresDeposesSurLEnsembleDesProduits = new ArrayList<>();
     }
 
     public void creditCompte(double soldeDuCompte) {
@@ -33,9 +34,9 @@ public class Compte {
 
     public void creerOffre(Produit produit, double prixMax, double prixCourant){
 
-        OffreEnchere  offre = new OffreEnchere( prixCourant, prixMax );
+        OffreEnchere  offre = new OffreEnchere( prixCourant, prixMax, produit );
         //soldeDuCompte -= ;
-        listOffre.add(offre);
+        listOffresDeposesSurLEnsembleDesProduits.add(offre);
 
     }
 }

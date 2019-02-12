@@ -2,6 +2,7 @@ package fr.umontpellier.iut;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Produit {
 
@@ -12,13 +13,16 @@ public class Produit {
     private LocalTime heureDebut;
     private static int lePasMini;
     private int coutParticipation;
-    private boolean ouverture;
+    private boolean estDispo;
+    private ArrayList<OffreEnchere> listeOffresDeposees;
+    private OffreEnchere gagnante;
 
     public Produit(int numero, String description, double prixCourant, int coutParticipation) {
         this.numero = numero;
         this.description = description;
         this.prixCourant = prixCourant;
         this.coutParticipation = coutParticipation;
+        listeOffresDeposees = new ArrayList<>();
     }
 
     public void setLePasMini(int lePasMini) {
@@ -29,11 +33,11 @@ public class Produit {
 
         this.heureDebut=LocalTime.now();
         this.dateEnchere=LocalDate.now();
-        this.ouverture= true;
+        this.estDispo = true;
     }
 
     public void arreterEnchere(){
-        this.ouverture= false;
+        this.estDispo = false;
     }
 
     @Override
@@ -44,14 +48,19 @@ public class Produit {
                 ", prixCourant=" + prixCourant +
                 ", lePasMini=" + lePasMini +
                 ", coutParticipation=" + coutParticipation +
-                ", ouverture=" + ouverture +
+                ", estDispo=" + estDispo +
                 '}';
     }
 
     public void ajouterOffre(OffreEnchere offre){
 
-        if(offre.getPrix() >= prixCourant ){
-
+        if(offre.getPrix() >= prixCourant + lePasMini && estDispo){
+            listeOffresDeposees.add(offre);
+            prixCourant = offre.getPrix();
+            gagnante = offre;
         }
     }
+
+
+
 }

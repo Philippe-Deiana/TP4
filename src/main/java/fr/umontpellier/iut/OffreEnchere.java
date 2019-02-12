@@ -9,12 +9,14 @@ public class OffreEnchere {
     private LocalTime heure;
     private double prix ;
     private double prixMax;
+    private Produit produit;
 
-    public OffreEnchere(double prix, double prixMax) {
+    public OffreEnchere(double prix, double prixMax, Produit produit) {
         this.prix = prix;
         this.prixMax = prixMax;
         date = LocalDate.now();
         heure = LocalTime.now();
+        this.produit = produit;
     }
 
     public double getPrix() {
